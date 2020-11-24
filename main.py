@@ -2,6 +2,7 @@ import pygame
 import os
 import time
 import random
+from Player.py import Player
 
 # setup
 width = 850
@@ -13,6 +14,7 @@ pygame.display.set_caption("Jet Fighter")
 # import sprites
 black_ship = pygame.image.load(os.path.join("assets", "black_ship.png"))
 ###
+black_player = Player()
 # game
 def main():
   run = True

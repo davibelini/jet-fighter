@@ -14,8 +14,8 @@ pygame.display.set_caption("Jet Fighter")
 col_grey = (95, 96, 95)
 
 # Images and coordinates
-black_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "black_ship.png")), (32, 32))
-white_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "white_ship.png")), (32, 32))
+black_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "black_ship.png")), (16, 16))
+white_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "white_ship.png")), (16, 16))
 
 # Entities
 class Player:

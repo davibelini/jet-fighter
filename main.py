@@ -3,32 +3,47 @@ import os
 import time
 import random
 
-# setup
 width = 950
 height = 650
-col_grey = (95, 96, 95)
+
+# Window
 window = pygame.display.set_mode((width,height))
 pygame.display.set_caption("Jet Fighter")
-###
-# sprites
+
+# Colors
+col_grey = (95, 96, 95)
+
+# Images and coordinates
 black_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "black_ship.png")), (32, 32))
-left_start_coord = (100, 300)
 white_ship = pygame.transform.scale(pygame.image.load(os.path.join("assets", "white_ship.png")), (32, 32))
-right_start_coord = (width - 150, 300)
-###
-# data
-black_ship_angle = 0
-###
-# game
+
+# Entities
+class Player:
+  def __init__(self, image, x, y):
+    self.y = y
+    self.x = x
+    self.image = image
+    self.spd = 2
+  def show(self):
+    window.blit(self.image, (self.x, self.y))
+  def move(self):
+    self.y -= self.spd
+
+# Instances
+white = Player(white_ship, width - 150, 300)
+black = Player(black_ship, 100, 300)
+
+# Game loop
 def main():
-  global black_ship_angle
   run = True
   fps = 60
   clock = pygame.time.Clock()
   def redraw():
     window.fill(col_grey)
-    window.blit(black_ship, left_start_coord)
-    window.blit(white_ship, right_start_coord)
+    black.show()
+    white.show()
+    black.move()
+    white.move()
     pygame.display.update()
   while run:
     clock.tick(fps)
@@ -37,8 +52,8 @@ def main():
       if e.type == pygame.QUIT:
         run = False
       if e.type == pygame.KEYDOWN:
-        if e.key == pygame.K_LEFT:
+        if e.key == pygame.K_LEFT:    
           print("pressed k_left")
-          # pygame.transform.rotate(black_ship, black_ship_angle) # it's not working
-          black_ship_angle += 1
+        if e.key == pygame.K_RIGHT:
+          print("pressed k_right")
 main()
